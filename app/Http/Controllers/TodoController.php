@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTodoRequest;
-use App\Http\Requests\UpdateTodoRequest;
 use App\Models\Todo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class TodoController extends Controller
 {
@@ -39,7 +37,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        return view('todo.show', ['todo'=>$todo]);
+        return view('todo.show', ['todo' => $todo]);
     }
 
     /**
@@ -47,7 +45,7 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        return view('todo.edit', ['todo'=>$todo]);
+        return view('todo.edit', ['todo' => $todo]);
     }
 
     /**
@@ -56,11 +54,11 @@ class TodoController extends Controller
     public function update(Request $request, Todo $todo)
     {
         $validated = $request->validate([
-            'description'=>'string|nullable',
-            'title'=>'string',
-            'state'=>'boolean',
-            'location'=>'string|nullable',
-            'notes'=>'string|nullable'
+            'description' => 'string|nullable',
+            'title' => 'string',
+            'state' => 'boolean',
+            'location' => 'string|nullable',
+            'notes' => 'string|nullable',
         ]);
 
         $todo->description = $validated['description'];

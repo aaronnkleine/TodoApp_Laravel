@@ -14,12 +14,11 @@ class Todo extends Model
         'title',
         'state',
         'notes',
-        'location'
+        'location',
     ];
 
-
     protected $casts = [
-        'state' => 'boolean'
+        'state' => 'boolean',
 
     ];
 }
