@@ -16,14 +16,14 @@ add('writable_dirs', []);
 
 host('staging')
     ->setHostname('37.202.2.195')
-    ->set('remote_user', 'p673504f1')
-    ->set('deploy_path', '~/TodoApp_Laravel/staging');
+    ->set('remote_user', 'p673504')
+    ->set('deploy_path', '~/html/TodoApp_Laravel/staging');
 
 
 host('production')
     ->setHostname('37.202.2.195')
-    ->set('remote_user', 'p673504f1')
-    ->set('deploy_path', '~/TodoApp_Laravel/production');
+    ->set('remote_user', 'p673504')
+    ->set('deploy_path', '~/html/TodoApp_Laravel/production');
 
 // Hooks
 
