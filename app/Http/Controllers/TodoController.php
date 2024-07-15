@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTodoRequest;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 
@@ -13,7 +12,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return view('todo.index');
+        $todos = Todo::orderBy('created_at', 'desc')->get();
+        return view('todo.index', compact('todos'));
     }
 
     /**
@@ -27,9 +27,21 @@ class TodoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTodoRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'location' => 'nullable|string',
+            'state' => 'required',
+            'notes' => 'nullable|string',
+        ]);
+
+        $validated['state'] = $validated['state'] === 'true';
+
+        Todo::create($validated);
+
+        return redirect()->route('todo.index')->with('success', 'Todo created successfully!');
     }
 
     /**
@@ -56,14 +68,14 @@ class TodoController extends Controller
         $validated = $request->validate([
             'description' => 'string|nullable',
             'title' => 'string',
-            'state' => 'boolean',
+            'state' => '',
             'location' => 'string|nullable',
             'notes' => 'string|nullable',
         ]);
 
         $todo->description = $validated['description'];
         $todo->title = $validated['title'];
-        $todo->state = in_array('state', $validated) && $validated['state'] == true;
+        $todo->state = array_key_exists('state', $validated) && (bool)$validated['state'] == true;
         $todo->location = $validated['location'];
         $todo->notes = $validated['notes'];
 
@@ -77,6 +89,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return redirect()->route('todo.index')->with('success', 'Todo deleted successfully!');
     }
 }

@@ -60,12 +60,14 @@
                                 </div>
 
                                 <div class="sm:col-span-3">
-                                    <label for="state"
-                                           class="block text-sm font-medium leading-6 text-gray-900">State</label>
+                                    <label for="state" class="block text-sm font-medium leading-6 text-gray-900">State</label>
                                     <div class="mt-2">
-                                        <input type="checkbox" name="state" id="state"  {{ $todo->state ? 'checked': '' }} value="{{ $todo->state  }}">
+                                        <!-- Hidden input to ensure a value is always sent -->
+                                        <!-- Checkbox input -->
+                                        <input type="checkbox" name="state" id="state" {{ $todo->state ? 'checked' : '' }} >
                                     </div>
                                 </div>
+
 
                                 <div class="col-span-full">
                                     <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
