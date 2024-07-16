@@ -10,7 +10,7 @@ class TodoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Todo $todo)
     {
         $todos = Todo::orderBy('created_at', 'desc')->get();
         return view('todo.index', compact('todos'));
