@@ -13,8 +13,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Auth::user()->todos;
-        return view('todo.index', compact('todos'));
+
+        return view('todo.index');
     }
 
     /**

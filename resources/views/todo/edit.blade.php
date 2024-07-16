@@ -64,7 +64,7 @@
                                         <div class="mt-2">
                                             <!-- Hidden input to ensure a value is always sent -->
                                             <!-- Checkbox input -->
-                                            <input type="checkbox" name="state"
+                                            <input type="checkbox" name="state" class="rounded-md size-6 checked:bg-blue-500"
                                                    id="state" {{ $todo->state ? 'checked' : '' }} >
                                         </div>
                                     </div>
