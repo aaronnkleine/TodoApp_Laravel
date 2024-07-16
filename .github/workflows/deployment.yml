@@ -86,6 +86,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    if: github.ref === 'refs/heads/main'
     container: lorisleiva/laravel-docker:latest
     needs: [preparation, building, db-seeding]
     steps:
