@@ -19,7 +19,7 @@
                     <div class="bg-white flex flex-col rounded-xl shadow-lg w-full">
 
                             <div
-                                class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3  p-5">
+                                class="grid grid-cols-1 gap-x-8 gap-y-10 border-gray-900/10 pb-12 md:grid-cols-3  p-5">
                                 <div>
                                     <h2 class="text-base font-semibold leading-7 text-gray-900">Create Todo</h2>
                                     <p class="mt-1 text-sm leading-6 text-gray-600"></p>

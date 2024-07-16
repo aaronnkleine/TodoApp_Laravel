@@ -185,10 +185,10 @@
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 text-end text-sm font-medium">
-                                                <form action="{{ route('todo.destroy', $todo) }}" method="POST">
+                                                <form action="{{ route('todo.destroy', ['todo'=>$todo]) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button"
+                                                    <button type="submit"
                                                             class="text-red-500 hover:text-red-900 focus:outline-none">
                                                         <svg width="24px" height="24px" viewBox="0 0 24 24"
                                                              fill="none"
