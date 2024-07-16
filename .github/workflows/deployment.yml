@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container: lorisleiva/laravel-docker:latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up PHP
         run: php -v
       - name: Install Composer dependencies
@@ -38,7 +38,7 @@ jobs:
     needs: preparation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -61,7 +61,7 @@ jobs:
         ports:
           - 3306:3306
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Composer install
         run: |
           composer install --prefer-dist --no-interaction --no-progress --no-scripts
@@ -89,7 +89,7 @@ jobs:
     container: lorisleiva/laravel-docker:latest
     needs: [preparation, building, db-seeding]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Composer install
         run: composer install --prefer-dist --no-interaction --no-progress --no-scripts
       - name: Setup SSH
