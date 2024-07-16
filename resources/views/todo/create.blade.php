@@ -4,7 +4,8 @@
             {{ __('Todo') }}
         </h2>
     </x-slot>
-
+    <form action="{{route('todo.store')}}" method="POST">
+        @csrf
     <div class="text-black/50">
         <div class="relative flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
             <div class="min-w-screen py-6 flex flex-col justify-center sm:py-12 w-full items-center">
@@ -16,8 +17,7 @@
                         </button>
                     </div>
                     <div class="bg-white flex flex-col rounded-xl shadow-lg w-full">
-                        <form action="{{route('todo.store')}}" method="POST">
-                            @csrf
+
                             <div
                                 class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3  p-5">
                                 <div>
@@ -74,7 +74,7 @@
 
                                 </div>
                             </div>
-                        </form>
+
                     </div>
 
                 </div>
@@ -82,5 +82,5 @@
             </div>
         </div>
 
-    </div>
+    </div>    </form>
 </x-app-layout>

@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Todo $todo)
+    public function index()
     {
-        $todos = Todo::orderBy('created_at', 'desc')->get();
+        $todos = Auth::user()->todos;
         return view('todo.index', compact('todos'));
     }
 
@@ -38,8 +39,8 @@ class TodoController extends Controller
         ]);
 
         $validated['state'] = $validated['state'] === 'true';
+        Auth::user()->todos()->create($validated);
 
-        Todo::create($validated);
 
         return redirect()->route('todo.index')->with('success', 'Todo created successfully!');
     }
