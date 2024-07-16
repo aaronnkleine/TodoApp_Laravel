@@ -28,6 +28,10 @@
                                 <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
                                     <th scope="col"
+                                        class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                        #
+                                    </th>
+                                    <th scope="col"
                                         class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         <div class="flex items-center gap-x-3">
                                             <input type="checkbox"
@@ -50,6 +54,8 @@
                                             </button>
                                         </div>
                                     </th>
+
+
 
                                     <th scope="col"
                                         class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -87,7 +93,9 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                 @foreach($todos as $todo)
-                                    <tr>
+                                    <tr><td class="p-4">
+                                            {{$todo->id}}
+                                        </td>
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
                                             <div class="inline-flex items-center gap-x-3">
                                                 <input type="checkbox"
