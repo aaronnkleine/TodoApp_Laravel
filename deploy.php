@@ -43,3 +43,6 @@ host('production')
     ->setForwardAgent(true)
     ->setSshMultiplexing(true)
     ->setSshArguments(['-o UserKnownHostsFile=/dev/null', '-o StrictHostKeyChecking=no']);
+
+
+after('deploy:failed', 'deploy:unlock');
