@@ -93,9 +93,9 @@
                 Deadline
             </th>
 
-            <th></th>
+            <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 cursor-pointer"></th>
             <th scope="col"
-                class="w-full py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
+                class="py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
                 <div class="flex justify-end items-center gap-4 mt-4 mb-4 px-4">
                     <a href="{{ route('todo.create') }}" class="relative select-none">
                         <button
@@ -159,7 +159,7 @@
                     {{ $todo->deadline ? $todo->deadline->format('d-m-Y') : '-' }}
                 </td>
 
-                <td class="px-4 py-4 text-sm whitespace-nowrap w-full">
+                <td class="px-4 py-4 text-sm whitespace-nowrap">
 
 
                     <div class="flex items-right justify-end gap-4">
@@ -210,7 +210,7 @@
                         </a>
                     </div>
                 </td>
-                <td class="px-6 py-4 text-end text-sm font-medium">
+                <td class="px-6 py-4 text-end text-sm font-medium ">
                     <form action="{{ route('todo.destroy', ['todo'=>$todo]) }}" method="POST">
                         @csrf
                         @method('DELETE')
