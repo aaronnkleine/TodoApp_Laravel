@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TodoController extends Controller
 {
@@ -13,7 +14,6 @@ class TodoController extends Controller
      */
     public function index()
     {
-
         return view('todo.index');
     }
 
@@ -34,11 +34,11 @@ class TodoController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'location' => 'nullable|string',
-            'state' => 'required',
             'notes' => 'nullable|string',
+            'priority' => 'required|in:low,medium,high',
+            'deadline' => 'nullable|date',
         ]);
 
-        $validated['state'] = $validated['state'] === 'true';
         Auth::user()->todos()->create($validated);
 
 
@@ -72,6 +72,8 @@ class TodoController extends Controller
             'state' => '',
             'location' => 'string|nullable',
             'notes' => 'string|nullable',
+            'priority' => 'required|in:low,medium,high',
+            'deadline' => 'nullable|date',
         ]);
 
         $todo->description = $validated['description'];
@@ -79,8 +81,10 @@ class TodoController extends Controller
         $todo->state = array_key_exists('state', $validated) && (bool)$validated['state'] == true;
         $todo->location = $validated['location'];
         $todo->notes = $validated['notes'];
+        $todo->priority = $validated['priority'];
+        $todo->deadline = $validated['deadline'];
 
-        $todo->save();
+        $todo->save($request->all());
 
         return redirect()->route('todo.index');
     }

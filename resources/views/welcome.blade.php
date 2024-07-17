@@ -160,11 +160,6 @@
                                 </div>
                             </div>
                         </div>
-                        <ul id="myUL">
-                        @foreach(\App\Models\Todo::all() as $todo)
-                                <li>{{ $todo->title  }}</li>
-                        @endforeach
-                        </ul>
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">

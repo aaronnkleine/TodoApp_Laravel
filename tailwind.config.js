@@ -19,5 +19,5 @@ export default {
         },
     },
 
-    plugins: [forms, typography, require("tailgrids/plugin")],
+    plugins: [forms, typography, require("tailgrids/plugin"), require('flowbite/plugin')],
 };

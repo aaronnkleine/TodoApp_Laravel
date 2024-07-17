@@ -22,6 +22,7 @@ class TodoFactory extends Factory
             'state' => fake()->boolean,
             'location' => fake()->city(),
             'notes' => fake()->realTextBetween(10, 50),
+            'deadline' => fake()->dateTimeThisYear()
         ];
     }
 }
