@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use App\Models\Todo;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,11 +17,25 @@ class UserSeeder extends Seeder
     {
 
 
-        User::factory()->has(Todo::factory(10))->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-        User::factory(10)->has(Todo::factory(10))->create();
+        User::factory()
+            ->has(Todo::factory()
+                ->count(10)
+                ->afterCreating(function (Todo $todo) {
+                    $tagIds = Tag::query()->inRandomOrder()->limit(3)->pluck('id')->toArray();
+                    $todo->tags()->sync($tagIds);
+                })
+            )->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
+
+        User::factory(10)
+            ->has(Todo::factory()->count(10)->afterCreating(function (Todo $todo) {
+                $tagIds = Tag::query()->inRandomOrder()->limit(3)->pluck('id')->toArray();
+                $todo->tags()->sync($tagIds);
+            }))
+            ->create();
+
 
     }
 }

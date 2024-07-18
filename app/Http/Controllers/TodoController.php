@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class TodoController extends Controller
 {
@@ -14,6 +14,7 @@ class TodoController extends Controller
      */
     public function index()
     {
+        $todos = Auth::user()->todos()->with('tags')->get();
         return view('todo.index');
     }
 
@@ -22,27 +23,13 @@ class TodoController extends Controller
      */
     public function create()
     {
-        return view('todo.create');
+        $tags = Tag::all();
+        return view('todo.create', compact('tags'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function render()
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'location' => 'nullable|string',
-            'notes' => 'nullable|string',
-            'priority' => 'required|in:low,medium,high',
-            'deadline' => 'nullable|date',
-        ]);
-
-        Auth::user()->todos()->create($validated);
-
-
-        return redirect()->route('todo.index')->with('success', 'Todo created successfully!');
+        return view('livewire.todo-create');
     }
 
     /**
@@ -74,17 +61,15 @@ class TodoController extends Controller
             'notes' => 'string|nullable',
             'priority' => 'required|in:low,medium,high',
             'deadline' => 'nullable|date',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
         ]);
 
-        $todo->description = $validated['description'];
-        $todo->title = $validated['title'];
-        $todo->state = array_key_exists('state', $validated) && (bool)$validated['state'] == true;
-        $todo->location = $validated['location'];
-        $todo->notes = $validated['notes'];
-        $todo->priority = $validated['priority'];
-        $todo->deadline = $validated['deadline'];
+        $todo->update($request->except('tags'));
 
-        $todo->save($request->all());
+        if ($request->has('tags')) {
+            $todo->tags()->sync($request->tags);
+        }
 
         return redirect()->route('todo.index');
     }

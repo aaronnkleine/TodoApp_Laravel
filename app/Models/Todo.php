@@ -11,6 +11,7 @@ class Todo extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'description',
         'title',
@@ -25,6 +26,11 @@ class Todo extends Model
         'state' => 'boolean',
         'deadline' => 'date'
     ];
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 
     public function user(): BelongsTo
     {

@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,7 +22,7 @@ Route::middleware([
 
 
     Route::resource('todo', TodoController::class);
-
+    Route::resource('tags', TagController::class);
 
 
     Route::get('/dashboard', function () {

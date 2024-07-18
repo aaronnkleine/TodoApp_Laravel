@@ -47,7 +47,13 @@
                                     </div>
                                 @endif
                                 {{$todo->title}}</h2>
-                            <h2 class="px-3 py-2 text-sm font-normal text-gray-500 text-left">
+                            <div class="px-2 mt-2 flex space-x-5">
+                                @forelse($todo->tags as $tag)
+                                    <p>{{$tag->name}}</p>
+                                @empty
+                                @endforelse
+                            </div>
+                            <h2 class="px-2 py-2 text-sm font-normal text-gray-500 text-left">
                                 {{$todo->created_at}} | {{$todo->location}}
                             </h2>
                         </div>

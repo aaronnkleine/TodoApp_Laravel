@@ -93,6 +93,11 @@
                 Deadline
             </th>
 
+            <th scope="col" wire:click="setSort('deadline')"
+                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 cursor-pointer">
+                Tags
+            </th>
+
             <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 cursor-pointer"></th>
             <th scope="col"
                 class="py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
@@ -157,6 +162,12 @@
 
                 <td class="px-6 py-4 text-sm text-gray-500 whitespace-no-wrap">
                     {{ $todo->deadline ? $todo->deadline->format('d-m-Y') : '-' }}
+                </td>
+
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-no-wrap">
+                    @foreach($todo->tags as $tag)
+                        <span class="badge badge-primary">{{ $tag->name }}</span>
+                    @endforeach
                 </td>
 
                 <td class="px-4 py-4 text-sm whitespace-nowrap">
@@ -252,5 +263,8 @@
             </tr>
         @endforeach
         </tbody>
+
+
+
     </table>
 </div>
