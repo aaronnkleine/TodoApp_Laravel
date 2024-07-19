@@ -175,10 +175,10 @@
                                             </td>
                                             <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{{$todo->notes}}</td>
                                             <td>
-                    <span
-                        class="px-2 py-1 text-sm font-medium text-white rounded-full {{ $todo->priority == 'high' ? 'bg-red-500' : ($todo->priority == 'medium' ? 'bg-yellow-500' : 'bg-emerald-500') }}">
-                                            {{ ucfirst($todo->priority) }}
-                    </span>
+                                                <span
+                                                    class="px-2 py-1 text-sm font-medium text-white rounded-full {{ $todo->priority == 'high' ? 'bg-red-500' : ($todo->priority == 'medium' ? 'bg-yellow-500' : 'bg-emerald-500') }}">
+                                                                        {{ ucfirst($todo->priority) }}
+                                                </span>
                                             </td>
 
                                             <td class="px-6 py-4 text-sm text-gray-500 whitespace-no-wrap">
@@ -243,39 +243,39 @@
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 text-end text-sm font-medium ">
-                                                    <button type="button" wire:click="deleteTodo({{$todo->id}})"
-                                                            class="text-red-500 hover:text-red-900 focus:outline-none">
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24"
-                                                             fill="none"
-                                                             xmlns="http://www.w3.org/2000/svg" stroke="#ef4444">
-                                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                               stroke-linejoin="round"></g>
-                                                            <g id="SVGRepo_iconCarrier">
-                                                                <path d="M10 12V17" stroke="#ff0000"
-                                                                      stroke-width="2"
-                                                                      stroke-linecap="round"
-                                                                      stroke-linejoin="round"></path>
-                                                                <path d="M14 12V17" stroke="#ff0000"
-                                                                      stroke-width="2"
-                                                                      stroke-linecap="round"
-                                                                      stroke-linejoin="round"></path>
-                                                                <path d="M4 7H20" stroke="#ff0000" stroke-width="2"
-                                                                      stroke-linecap="round"
-                                                                      stroke-linejoin="round"></path>
-                                                                <path
-                                                                    d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
-                                                                    stroke="#ff0000" stroke-width="2"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
-                                                                <path
-                                                                    d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
-                                                                    stroke="#ff0000" stroke-width="2"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
-                                                            </g>
-                                                        </svg>
-                                                    </button>
+                                                <button type="button" wire:click="deleteTodo({{$todo->id}})"
+                                                        class="text-red-500 hover:text-red-900 focus:outline-none">
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24"
+                                                         fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg" stroke="#ef4444">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                           stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <path d="M10 12V17" stroke="#ff0000"
+                                                                  stroke-width="2"
+                                                                  stroke-linecap="round"
+                                                                  stroke-linejoin="round"></path>
+                                                            <path d="M14 12V17" stroke="#ff0000"
+                                                                  stroke-width="2"
+                                                                  stroke-linecap="round"
+                                                                  stroke-linejoin="round"></path>
+                                                            <path d="M4 7H20" stroke="#ff0000" stroke-width="2"
+                                                                  stroke-linecap="round"
+                                                                  stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+                                                                stroke="#ff0000" stroke-width="2"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                                                stroke="#ff0000" stroke-width="2"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                        </g>
+                                                    </svg>
+                                                </button>
 
                                             </td>
                                         </tr>

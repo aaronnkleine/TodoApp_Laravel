@@ -64,4 +64,7 @@ class Index extends Component
         $todo = Todo::find($todoId);
         $todo->delete();
     }
+
+
+
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TodoController;
 use App\Livewire\Todo\Create;
+use App\Livewire\Todo\Edit;
 use App\Livewire\Todo\Index;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
@@ -23,8 +24,9 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/todo/create', Create::class)->name('todo.create');
+    Route::get('/todo/{todoId}/edit', Edit::class)->name('todo.edit');
     Route::get('/todo/', Index::class)->name('todo.index');
-    Route::resource('todo', TodoController::class)->except(['create','store','index','destroy']);
+    Route::resource('todo', TodoController::class)->except(['create','store','index','destroy', 'edit']);
     Route::resource('tags', TagController::class);
 
 
