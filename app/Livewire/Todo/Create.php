@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Todo;
 
 use App\Models\Tag;
-use App\Models\Todo;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
-class TodoCreate extends Component
+class Create extends Component
 {
     public $title;
-    public $priority;
+    public $priority = 'low';
     public $description;
     public $notes;
     public $location;
-    public $deadline;
+    public $deadline = null;
     public $selectedTags = [];
 
     public function render(): Application|View|Factory|\Illuminate\View\View
     {
-        return view('livewire.todo-create');
+        return view('livewire.todo.create')->layout('layouts.app');
     }
 
     public function getTags(): Collection
@@ -33,8 +33,6 @@ class TodoCreate extends Component
 
     public function save(): void
     {
-        Log::debug("call save");
-
         $this->validate([
             'title' => 'required|string|max:255',
             'priority' => 'required|string',
@@ -44,19 +42,18 @@ class TodoCreate extends Component
             'deadline' => 'nullable|date',
             'selectedTags' => 'array',
         ]);
-        Log::debug('validated');
 
-        $todo = Todo::create([
-            'title' => $this->title,
-            'priority' => $this->priority,
-            'description' => $this->description,
-            'notes' => $this->notes,
-            'location' => $this->location,
-            'deadline' => $this->deadline,
+        $todo = Auth::user()->todos()->create([
+        'title' => $this->title,
+            'priority' => $this->priority ?? 'low',
+            'description' => $this->description ?? '',
+            'notes' => $this->notes ?? '',
+            'location' => $this->location ?? '',
+            'deadline' => $this->deadline ,
         ]);
 
-        Log::debug($this->selectedTags);
         $todo->tags()->sync($this->selectedTags);
+        $this->redirect(route('todo.index'));
 
         session()->flash('message', 'Todo created successfully.');
     }

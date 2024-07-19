@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->has(Todo::factory()
-                ->count(10)
+                ->count(50)
                 ->afterCreating(function (Todo $todo) {
                     $tagIds = Tag::query()->inRandomOrder()->limit(3)->pluck('id')->toArray();
                     $todo->tags()->sync($tagIds);

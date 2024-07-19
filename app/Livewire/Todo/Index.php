@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Todo;
 
 use App\Models\Todo;
 use App\Models\User;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class TodoTable extends Component
+class Index extends Component
 {
 
     public string $sortBy = '';
@@ -19,7 +19,7 @@ class TodoTable extends Component
 
     public function render(): Application|View|Factory|\Illuminate\View\View
     {
-        return view('livewire.todo-table');
+        return view('livewire.todo.index')->layout('layouts.app');
     }
 
 
@@ -58,5 +58,10 @@ class TodoTable extends Component
         $todo->state = !$todo->state;
         $todo->save();
         $this->dispatch('$refresh')->self();
+    }
+
+    public function deleteTodo($todoId){
+        $todo = Todo::find($todoId);
+        $todo->delete();
     }
 }

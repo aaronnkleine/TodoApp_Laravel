@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\TodoController;
+use App\Livewire\Todo\Create;
+use App\Livewire\Todo\Index;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 
@@ -20,9 +22,12 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-
-    Route::resource('todo', TodoController::class);
+    Route::get('/todo/create', Create::class)->name('todo.create');
+    Route::get('/todo/', Index::class)->name('todo.index');
+    Route::resource('todo', TodoController::class)->except(['create','store','index','destroy']);
     Route::resource('tags', TagController::class);
+
+
 
 
     Route::get('/dashboard', function () {

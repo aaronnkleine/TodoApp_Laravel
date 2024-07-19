@@ -11,12 +11,12 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view('tags.tag-index', compact('tags'));
+        return view('tags.index', compact('tags'));
     }
 
     public function create()
     {
-        return view('tags.tag-create');
+        return view('tags.create');
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class TagController extends Controller
 
     public function edit(Tag $tag)
     {
-        return view('tags.tag-edit', compact('tag'));
+        return view('tags.edit', compact('tag'));
     }
 
     public function update(Request $request, Tag $tag)
